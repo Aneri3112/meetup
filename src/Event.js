@@ -17,7 +17,7 @@ class Event extends Component {
       <div className="event">
         <h3 className="title">{event.summary}</h3>
         <p className="start-time">{event.start.dateTime} {event.start.timeZone} </p>
-        <p className="location">{event.locations}</p>
+        <p className="location">{event.location}</p>
         <button className="btn-details" onClick={this.handleClick}>
           show details
         </button>
