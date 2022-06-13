@@ -1,5 +1,5 @@
 /**
- * @async
+ * 
  * @param {*} events:
  * The following function should be in the “api.js” file.
  * This function takes an events array, then uses map to create a new array with only locations.
