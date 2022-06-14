@@ -34,6 +34,8 @@ class CitySearch extends Component {
     const { query } = this.state;
     return (
       <div className="CitySearch">
+        <h1 className="title">Meet App</h1>
+        <p className="searchcity">Select nearest city</p>
         <input
           type="text"
           className="city"
