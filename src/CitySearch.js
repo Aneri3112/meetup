@@ -44,7 +44,6 @@ class CitySearch extends Component {
     const { query } = this.state;
     return (
       <div className="CitySearch">
-        <InfoAlert text={this.state.infoText} />
         <h1 className="title">Meet App</h1>
         <p className="searchcity">Select nearest city</p>
         <input
@@ -68,6 +67,7 @@ class CitySearch extends Component {
             <b>See all cities</b>
           </li>
         </ul>
+        <InfoAlert text={this.state.infoText} />
       </div>
     );
   }
