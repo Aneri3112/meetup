@@ -26,4 +26,5 @@ class InfoAlert extends Alert {
     super(props);
     this.color = 'blue';
   }
-}
+} 
+export { InfoAlert };
