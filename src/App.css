@@ -199,10 +199,6 @@ input[type="number"] {
   font-family: "Roboto";
 }
 
-.event {
-  border: 4px solid black;
-}
-
 .details-button {
   background-color: black;
   color: white;
