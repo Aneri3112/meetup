@@ -6,6 +6,7 @@ import NumberOfEvents from './NumberOfEvents';
 import WelcomeScreen from './WelcomeScreen';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { OfflineAlert } from './Alert';
+import { Col, Container, Row } from 'react-bootstrap';
 
 import './nprogress.css';
   
@@ -31,6 +32,16 @@ class App extends Component {
           this.setState({ events: events.slice(0, this.state.numberOfEvents),
             locations: extractLocations(events) });
         }
+      });
+    }
+    if (!navigator.onLine) {
+      this.setState({
+        offlineText:
+        'Your are currently offline. The displayed events might not be up to date.'
+      });
+    } else {
+      this.setState({
+        offlineText: ''
       });
     }
   }
@@ -63,13 +74,24 @@ class App extends Component {
   
   render() {
     if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+    const { offlineText } = this.state;
     return (
       <div className="App">
-        { !navigator.onLine && <OfflineAlert text={'You are currently offline, data may be not updated.'}/> }
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents  updateEventNumbers={this.updateEventNumbers} />
-        <EventList events={this.state.events} />
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+        <Container fluid>
+          <Row className='justify-content-md-center'>
+            <Col xs={12} md={6} xl={6}>
+              <EventList events={this.state.events} />
+            </Col>
+          </Row>
+        </Container>
+        <OfflineAlert text={offlineText} />
+
+        <WelcomeScreen 
+          showWelcomeScreen={this.state.showWelcomeScreen} 
+          getAccessToken={() => { getAccessToken() }} 
+        />
       </div>
     );
   }
