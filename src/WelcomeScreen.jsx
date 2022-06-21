@@ -10,7 +10,7 @@ function WelcomeScreen(props) {
           <Card className="welcome-screen-card">
             <Row className="className='justify-content-md-center">
               <Col>
-                <Card.Text className="card-text">Welcome to the Meet app</Card.Text>
+                <Card.Text className="card-text1">Welcome to the Meet app</Card.Text>
                 <Card.Text className="card-text">
                   Log in to see upcoming events around the world for
                   full-stack developers

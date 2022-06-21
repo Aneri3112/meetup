@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   top: 0;
-  background: white;
+  background: black;
 }
 
 .position-wrapper {
@@ -17,12 +17,17 @@
   box-shadow: 10px 10px 2px black;
   border: 0.4rem solid white;
 }
-
-.card-text {
+.card-text1 {
   padding-top: 15px;
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+}
+.card-text {
+  padding-top: 12px;
   font-size: 20px;
   font-weight: 600;
-  color: black;
+  color: white;
 }
 
 
