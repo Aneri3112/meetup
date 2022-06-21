@@ -6,7 +6,6 @@ import NumberOfEvents from './NumberOfEvents';
 import WelcomeScreen from './WelcomeScreen';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { OfflineAlert } from './Alert';
-import { Col, Container, Row } from 'react-bootstrap';
 
 import './nprogress.css';
   
@@ -79,13 +78,8 @@ class App extends Component {
       <div className="App">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents  updateEventNumbers={this.updateEventNumbers} />
-        <Container fluid>
-          <Row className='justify-content-md-center'>
-            <Col lg={6} md={8} >
-              <EventList events={this.state.events} />
-            </Col>
-          </Row>
-        </Container>
+        <EventList events={this.state.events} />
+           
         <OfflineAlert text={offlineText} />
 
         <WelcomeScreen 
