@@ -16,9 +16,7 @@ ul {
 p {
   margin: 5px 0;
 }
-.Alert {
-  left: 5%;
-}
+
 .display-none {
   display: none;
 }
@@ -83,19 +81,28 @@ input[type="number"] {
   padding: 10px 10px 35px;
   margin-bottom: 10px;
   text-align: left;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  /*border: 1px solid #ccc; */
+  /*border-radius: 4px;*/
   position: relative;
 }
 
+.event-card {
+  box-shadow: 10px 10px 2px black;
+  border: 0.4rem solid black;
+}
+
 .details-btn {
-  position: absolute;
+ /* position: absolute;
   right: 5px;
   bottom: 5px;
   padding: 5px 8px;
   border-radius: 5px;
   outline: none;
-  cursor: pointer;
+  cursor: pointer;*/
+  color: white;
+  background-color: var(--main-color);
+  border: none;
+  margin-bottom: 20px;
 }
 
 .name {
@@ -132,8 +139,9 @@ input[type="number"] {
 }
 
 .Alert {
-  position: fixed;
-  top: 20px;
+ /* position: fixed; 
+  top: 20px; */
+  left: 5%;
 }
 
 .data-vis-wrapper {
