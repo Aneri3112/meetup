@@ -33,16 +33,6 @@ class App extends Component {
         }
       });
     }
-    if (!navigator.onLine) {
-      this.setState({
-        offlineText:
-        'Your are currently offline. The displayed events might not be up to date.'
-      });
-    } else {
-      this.setState({
-        offlineText: ''
-      });
-    }
   }
 
   componentWillUnmount(){
@@ -73,14 +63,12 @@ class App extends Component {
   
   render() {
     if (this.state.showWelcomeScreen === undefined) return <div className="App" />
-    const { offlineText } = this.state;
     return (
       <div className="App">
+         {!navigator.onLine && <OfflineAlert text={'You are currently offline, data may be not updated.'}/>}
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents  updateEventNumbers={this.updateEventNumbers} />
         <EventList events={this.state.events} />
-           
-        <OfflineAlert text={offlineText} />
 
         <WelcomeScreen 
           showWelcomeScreen={this.state.showWelcomeScreen} 
