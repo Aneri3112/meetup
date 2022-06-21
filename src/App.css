@@ -16,7 +16,9 @@ ul {
 p {
   margin: 5px 0;
 }
-
+.Alert {
+  left: 5%;
+}
 .display-none {
   display: none;
 }

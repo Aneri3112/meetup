@@ -3,11 +3,9 @@
   width: 100%;
   height: 100%;
   top: 0;
-  background: black;
+  background: #ffffff;
 }
-h1, h4 {
-  color: #ffffff;
-}
+
 .login-button {
   color: #494949;
   text-transform: uppercase;
