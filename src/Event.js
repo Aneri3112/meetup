@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Card, CardGroup, Button } from "react-bootstrap";
 import './App.css';
 
 class Event extends Component {
@@ -17,33 +18,32 @@ class Event extends Component {
     const { collapsed } = this.state;
     return (
       <div className="event">
-        <h2 className="summary">{event.summary}</h2>
-        <p className="start-date">
-          {event.start.dateTime} ({event.start.timeZone})
-        </p>
+        <CardGroup>
+          <Card className="event-card">
+            <Card.Title className="summary">{event.summary}</Card.Title>
+            <Card.Subtitle className="start-date"> {event.start.dateTime} ({event.start.timeZone}) </Card.Subtitle>
+            <Card.Subtitle className="location"> @{event.summary} | {event.location} </Card.Subtitle>
 
-        <p className="location">
-          @{event.summary} | {event.location}
-        </p>
+            <Button
+              variant="outline-info"
+              className= "details-button"
+              onClick={this.handleClick}
+            >
+              {collapsed ? "Show Details" : "Hide Details"}
+            </Button>
 
-        <button
-          variant="outline-info"
-          className= "details-button"
-          onClick={this.handleClick}
-        >
-          {collapsed ? "Show Details" : "Hide Details"}
-        </button>
-
-        {!collapsed && (
-          <div className= "extra-details" >
-          
-            <h3>About the event:</h3>
-            <a href={event.htmlLink} rel="noreferrer" target="_blank">
-              See details on Google Calendar
-            </a>
-            <p className="event-description">{event.description}</p>
-          </div>
-        )}
+            {!collapsed && (
+              <div className= "extra-details" >
+              
+                <Card.Title>About the event:</Card.Title>
+                <a href={event.htmlLink} rel="noreferrer" target="_blank">
+                  See details on Google Calendar
+                </a>
+                <p className="event-description">{event.description}</p>
+              </div>
+            )}
+          </Card>
+        </CardGroup>
       </div>
     );
   }
