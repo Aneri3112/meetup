@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   top: 0;
-  background: black;
+  background: white;
 }
 
 .position-wrapper {
@@ -12,7 +12,6 @@
 }
 
 .welcome-screen-card {
-
   margin-top: 250px;
   height: 280px;
   box-shadow: 10px 10px 2px black;
@@ -23,7 +22,7 @@
   padding-top: 15px;
   font-size: 20px;
   font-weight: 600;
-  color: white;
+  color: black;
 }
 
 
