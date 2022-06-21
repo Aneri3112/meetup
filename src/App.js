@@ -81,7 +81,7 @@ class App extends Component {
         <NumberOfEvents  updateEventNumbers={this.updateEventNumbers} />
         <Container fluid>
           <Row className='justify-content-md-center'>
-            <Col xs={12} md={6} xl={4}>
+            <Col lg={6} md={8} >
               <EventList events={this.state.events} />
             </Col>
           </Row>
