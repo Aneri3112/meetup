@@ -18,7 +18,7 @@
   };
   
   //if access token found in storage
-  const checkToken = async (accessToken) => {
+  export const checkToken = async (accessToken) => {
     const result = await fetch(
       `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
     )
@@ -29,7 +29,7 @@
   };
 
   //remove the code from the URL once you’re finished with it
-  const removeQuery = () => {
+  export const removeQuery = () => {
     if (window.history.pushState && window.location.pathname) {
       var newurl =
         window.location.protocol +
