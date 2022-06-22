@@ -8,7 +8,7 @@ describe('show/hide an event details', () => {
     beforeAll(async () => {
         browser = await puppeteer.launch();
         page = await browser.newPage();
-        await page.goto('http://localhost:3000/meet');
+        await page.goto('http://localhost:3000/meetup');
         await page.waitForSelector('.event');
     });
 
