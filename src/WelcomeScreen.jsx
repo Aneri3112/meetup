@@ -36,7 +36,7 @@ function WelcomeScreen(props) {
 
                     </div>
                 </Card.Body>
-                <a href="https://Aneri3112.github.io/meet/privacy.html" rel="nofollow noopener" >
+                <a href="https://Aneri3112.github.io/meetup/privacy.html" rel="nofollow noopener" >
                   Privacy policy
                 </a>
               </Col>
