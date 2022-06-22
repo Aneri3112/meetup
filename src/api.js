@@ -27,7 +27,12 @@
   
     return result;
   };
-
+  /**
+ * 
+ * @returns list of events
+ * 
+ * This function connects to the Google Calendar API and returns an array of events 
+ */
   //remove the code from the URL once you’re finished with it
   export const removeQuery = () => {
     if (window.history.pushState && window.location.pathname) {
