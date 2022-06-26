@@ -6,6 +6,7 @@ import NumberOfEvents from './NumberOfEvents';
 import WelcomeScreen from './WelcomeScreen';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { OfflineAlert } from './Alert';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 import './nprogress.css';
   
@@ -39,6 +40,17 @@ class App extends Component {
     this.mounted = false;
   }
 
+  getData = () => {
+    const {locations, events} = this.state;
+    const data = locations.map((location)=>{
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(', ').shift()
+      return {city, number};
+    })
+    return data;
+  };
+
+
   updateEvents = (location, eventCount = this.state.numberOfEvents) => {
     this.mounted = true;
     getEvents().then((events) => {
@@ -68,6 +80,27 @@ class App extends Component {
         { !navigator.onLine && <OfflineAlert text={'You are currently offline, data may be not updated.'}/> }
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents  updateEventNumbers={this.updateEventNumbers} />
+        <ResponsiveContainer>
+        <ScatterChart
+                  margin={{
+                    top: 20,
+                    right: 60,
+                    bottom: 20,
+                    left: 0,
+                  }}
+                >
+                  <CartesianGrid />
+                  <XAxis type="category" dataKey="city" name="City" />
+                  <YAxis
+                    type="number"
+                    dataKey="number"
+                    name="Number of events"
+                    allowDecimals={false}
+                  />
+                  <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+                  <Scatter data={this.getData()} fill="#FFC898" />
+                </ScatterChart>
+                </ResponsiveContainer> 
         <EventList events={this.state.events} />
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
