@@ -44,7 +44,7 @@ class CitySearch extends Component {
     const { query } = this.state;
     return (
       <div className="CitySearch">
-        <label className="searchcity">Select nearest city</label>{" "}
+        <label className="searchcity">Select nearest city</label>
         <input
           type="text"
           className="city"

@@ -8,7 +8,7 @@ import EventGenre from './EventGenre';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { OfflineAlert } from './Alert';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
+
 
 import './nprogress.css';
   
@@ -75,66 +75,29 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.showWelcomeScreen === undefined &&
-      navigator.onLine &&
-      !window.location.href.startsWith("http://localhost")
-      ) {
-        return <div className="App" />;
-      }
-      if (this.state.showWelcomeScreen === true)
-      return (
-        <WelcomeScreen 
-          showWelcomeScreen={this.state.showWelcomeScreen} 
-          getAccessToken={() => { 
-            getAccessToken() 
-          }} 
-        />
-      );
-
+    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+    const { events } = this.state;
     return (
       <div className="App">
-          <Navbar sticky="top" bg="light" expand="lg" variant="light" className="mb-3">
-          <Container fluid>
-            <Navbar.Brand id="navbrand" href="/">Meet</Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="ml-auto">
-                <Nav.Link>
-                  {" "}
-                    <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-                </Nav.Link>
-                <Nav.Link>
-                  {" "}
-                  <NumberOfEvents  updateEventNumbers={this.updateEventNumbers} />
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-        </Container>
-        </Navbar>
-
         { !navigator.onLine && <OfflineAlert text={'You are currently offline, data may be not updated.'}/> }
-        <Container md={12} lg={6}>
-          <Row>
-            <Col className='centerElements'>
-              <h4>Popularity of events</h4>
-              <EventGenre events={this.state.events} />
-            </Col>
+        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+        <NumberOfEvents  updateEventNumbers={this.updateEventNumbers} />
 
-            <Col className='centerElements'>
-              <h4>Events in each city</h4>
-                <ResponsiveContainer height={400} minWidth={400}>
-                  <ScatterChart margin={{ top: 20, right: 20, bottom: 10, left: 10, }} >
-                    <CartesianGrid  strokeDasharray="3 3" />
-                    <XAxis type="category" dataKey="city" name="City" />
-                    <YAxis type="number" dataKey="number" name="Number of events" allowDecimals={false} />
-                    <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-                    <Scatter data={this.getData()} fill="#FFC898" />
-                  </ScatterChart>
-                </ResponsiveContainer> 
-            </Col>
-        </Row>
-        </Container>
+        <h2>Events in each city</h2>
+        <div className='data-vis-wrapper'>
+          <EventGenre events={events} />
+          <ResponsiveContainer height={400}>
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 10, left: 10, }} >
+              <CartesianGrid  strokeDasharray="3 3" />
+              <XAxis type="category" dataKey="city" name="City" />
+              <YAxis type="number" dataKey="number" name="Number of events" allowDecimals={false} />
+              <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+              <Scatter data={this.getData()} fill="#FFC898" />
+            </ScatterChart>
+          </ResponsiveContainer> 
+        </div>
         <EventList events={this.state.events} />
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
