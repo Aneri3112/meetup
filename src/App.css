@@ -147,6 +147,14 @@ input[type="number"] {
   overflow: visible;
 }
 
+.centerElements {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 700;
+}
+
 .login-button {
   color: #494949;
   text-transform: uppercase;
