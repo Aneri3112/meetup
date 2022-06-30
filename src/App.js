@@ -79,11 +79,6 @@ class App extends Component {
     const { events } = this.state;
     return (
       <div className="App">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-          <div class="container-fluid">
-            <a class="navbar-text" href='App.js'>Meet</a>
-          </div>
-        </nav>
         { !navigator.onLine && <OfflineAlert text={'You are currently offline, data may be not updated.'}/> }
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents  updateEventNumbers={this.updateEventNumbers} />
