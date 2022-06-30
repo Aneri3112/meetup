@@ -8,6 +8,7 @@ import EventGenre from './EventGenre';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { OfflineAlert } from './Alert';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 
 import './nprogress.css';
   
@@ -78,10 +79,26 @@ class App extends Component {
     const { events } = this.state;
     return (
       <div className="App">
-        { !navigator.onLine && <OfflineAlert text={'You are currently offline, data may be not updated.'}/> }
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumberOfEvents  updateEventNumbers={this.updateEventNumbers} />
+        <Container>
+          <Navbar sticky="top" bg="light" expand="lg" variant="light" className="mb-3">
+            <Navbar.Brand id="navbrand" href="/">Meet</Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="ml-auto">
+                <Nav.Link>
+                  {" "}
+                    <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+                </Nav.Link>
+                <Nav.Link>
+                  {" "}
+                  <NumberOfEvents  updateEventNumbers={this.updateEventNumbers} />
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </Container>
 
+        { !navigator.onLine && <OfflineAlert text={'You are currently offline, data may be not updated.'}/> }
         <h2>Events in each city</h2>
         <div className='data-vis-wrapper'>
           <EventGenre events={events} />
