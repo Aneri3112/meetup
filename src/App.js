@@ -41,17 +41,6 @@ class App extends Component {
     this.mounted = false;
   }
 
-  getData = () => {
-    const {locations, events} = this.state;
-    const data = locations.map((location)=>{
-      const number = events.filter((event) => event.location === location).length
-      const city = location.split(', ').shift()
-      return {city, number};
-    })
-    return data;
-  };
-
-
   updateEvents = (location, eventCount = this.state.numberOfEvents) => {
     this.mounted = true;
     getEvents().then((events) => {
@@ -74,6 +63,16 @@ class App extends Component {
     this.updateEvents(this.state.location, eventNumbers);
   };
   
+  getData = () => {
+    const {locations, events} = this.state;
+    const data = locations.map((location)=>{
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(', ').shift()
+      return {city, number};
+    })
+    return data;
+  };
+
   render() {
     if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     const { events } = this.state;
@@ -82,11 +81,13 @@ class App extends Component {
         { !navigator.onLine && <OfflineAlert text={'You are currently offline, data may be not updated.'}/> }
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents  updateEventNumbers={this.updateEventNumbers} />
+
+        <h4>Events in each city</h4>
         <div className='data-vis-wrapper'>
           <EventGenre events={events} />
-          <ResponsiveContainer>
-            <ScatterChart margin={{ top: 20, right: 60, bottom: 20, left: 0, }} >
-              <CartesianGrid />
+          <ResponsiveContainer height={400}>
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 10, left: 10, }} >
+              <CartesianGrid  strokeDasharray="3 3" />
               <XAxis type="category" dataKey="city" name="City" />
               <YAxis type="number" dataKey="number" name="Number of events" allowDecimals={false} />
               <Tooltip cursor={{ strokeDasharray: "3 3" }} />
