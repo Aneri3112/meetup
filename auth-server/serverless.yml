@@ -1,4 +1,4 @@
-console: true
+#console: true
 # Welcome to Serverless!
 #
 # This file is the main config file for your service.
@@ -15,7 +15,7 @@ console: true
 service: auth-server
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
-org: chillygoldfish
+#org: chillygoldfish
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
